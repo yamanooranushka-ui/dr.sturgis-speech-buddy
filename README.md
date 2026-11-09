@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+<<<<<< HEAD
 # Dr. Sturgis — Speech Practice Companion
 
 > **Student prototype. Not a medical device, not a diagnostic tool, and not a
@@ -248,4 +248,3 @@ Invoke-RestMethod http://127.0.0.1:8765/api/detect -Method Post `
 | `GEMINI_API_KEY` | *(none → demo mode)* | Google AI Studio key, server-side only |
 | `GEMINI_MODEL` | `gemini-2.5-flash` | Gemini model override |
 | `PORT` | `8765` | Server port |
-=======
