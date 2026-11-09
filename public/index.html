@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Dr. Sturgis - a student prototype speech practice companion. Not a medical device or substitute for professional care.">
+<title>Dr. Sturgis · Speech Practice Companion (Student Prototype)</title>
+<link rel="stylesheet" href="/styles.css">
+<link rel="icon" type="image/png" href="/assets/Heart%20Care%20App%20Icon.png">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<div id="auth-gate" class="auth-gate">
+  <form id="auth-form" class="auth-card">
+    <img class="brand-logo" src="/assets/Heart%20Care%20App%20Icon.png" alt="Dr. Sturgis logo" width="64" height="64">
+    <h2 id="auth-title">Create your account</h2>
+    <p class="muted">Sign up or log in, then set up your practice profile. Your details stay in this browser.</p>
+    <div class="btn-row" role="group" aria-label="Account action">
+      <button type="button" class="btn btn-primary" id="auth-tab-signup">Sign up</button>
+      <button type="button" class="btn" id="auth-tab-login">Log in</button>
+    </div>
+    <div id="auth-name-wrap">
+      <label for="auth-name">Your name</label>
+      <input class="input" id="auth-name" name="name" autocomplete="name" required>
+    </div>
+    <label for="auth-email">Email</label>
+    <input class="input" id="auth-email" name="email" type="email" autocomplete="username" required>
+    <label for="auth-password">Password</label>
+    <input class="input" id="auth-password" name="password" type="password" autocomplete="new-password" minlength="4" required>
+    <p id="auth-error" class="notice notice-warn" role="alert" hidden></p>
+    <button type="submit" class="btn btn-primary" id="auth-submit">Create account</button>
+    <p class="auth-fine">Saved only on this device. This is a practice account, not a medical record.</p>
+  </form>
+</div>
+
+<button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="main-nav">
+  <span aria-hidden="true">☰</span> Menu
+</button>
+<button type="button" class="nav-backdrop" id="nav-backdrop" hidden aria-label="Close menu"></button>
+
+<aside class="app-sidebar">
+  <div class="brand">
+    <img class="brand-logo" src="/assets/Heart%20Care%20App%20Icon.png" alt="">
+    <h1>Dr. Sturgis</h1>
+  </div>
+  <nav id="main-nav" aria-label="Main sections">
+    <button type="button" class="nav-btn" data-section="profile">My Profile</button>
+    <button type="button" class="nav-btn" data-section="paths">Practice Paths</button>
+    <button type="button" class="nav-btn" data-section="live">Live Conversation</button>
+    <button type="button" class="nav-btn" data-section="insights">Speech Insights</button>
+    <button type="button" class="nav-btn" data-section="progress">Progress</button>
+    <button type="button" class="nav-btn" data-section="privacy">Privacy</button>
+  </nav>
+  <div class="sidebar-foot">
+    <p id="signed-in-as" class="brand-tag"></p>
+    <button type="button" class="nav-btn" id="logout-btn">Log out</button>
+  </div>
+</aside>
+
+<div id="system-banner" class="banner" hidden></div>
+
+<main id="main" tabindex="-1">
+
+  <!-- ======================= MY PROFILE ======================= -->
+  <section id="section-profile" class="panel" aria-labelledby="h-profile">
+    <h2 id="h-profile">My Profile</h2>
+    <div id="profile-root"></div>
+    <p class="section-note">Set up your personal practice profile. These are self-selected preferences, not a diagnosis. Everything stays in this browser.</p>
+  </section>
+
+  <!-- ======================= PRACTICE PATHS ======================= -->
+  <section id="section-paths" class="panel" aria-labelledby="h-paths" hidden>
+    <h2 id="h-paths">Practice Paths</h2>
+    <div id="paths-root"></div>
+    <p class="section-note">Each visit you can continue the last activity or pick any speaking activity for your age group. These are practice ideas, not treatment, and nothing here scores how fluent you sound.</p>
+  </section>
+
+  <!-- ======================= LIVE CONVERSATION ======================= -->
+  <section id="section-live" class="panel" aria-labelledby="h-live" hidden>
+    <h2 id="h-live">Live Conversation</h2>
+    <div id="live-root"></div>
+    <p class="section-note">Talk with a friendly AI partner in a turn-based conversation: you speak, the AI replies, then it listens again. Voice features send audio and transcripts to Google Gemini only after you consent.</p>
+  </section>
+
+  <!-- ======================= SPEECH INSIGHTS ======================= -->
+  <section id="section-insights" class="panel" aria-labelledby="h-insights" hidden>
+    <h2 id="h-insights">Speech Insights</h2>
+    <div id="insights-root"></div>
+    <p class="section-note">Informal, transcript-based observations about your own sessions, never compared with other people. Every number is an experimental estimate, not a clinical measurement. Transcript-based analysis cannot reliably detect speech blocks, sound prolongations, tension, or every disfluency, and speech-recognition transcripts sometimes clean up what was actually said. Nothing here is a clinical measurement, a diagnosis, or a score compared against other people.</p>
+  </section>
+
+  <!-- ======================= PROGRESS ======================= -->
+  <section id="section-progress" class="panel" aria-labelledby="h-progress" hidden>
+    <h2 id="h-progress">Progress</h2>
+    <div id="progress-root"></div>
+    <p class="section-note">Your practice history, weekly summaries and a report you can voluntarily share with your speech-language pathologist.</p>
+  </section>
+
+  <!-- ======================= PRIVACY ======================= -->
+  <section id="section-privacy" class="panel" aria-labelledby="h-privacy" hidden>
+    <h2 id="h-privacy">Privacy &amp; Data</h2>
+    <div id="privacy-root"></div>
+    <p class="section-note">See exactly what Dr. Sturgis stores, what leaves your device, and export or delete everything at any time.</p>
+  </section>
+
+</main>
+
+<footer class="app-footer">
+  <p><strong>Dr. Sturgis is a student prototype.</strong> It is not a medical device,
+     not a diagnostic tool, and not a substitute for professional care. Nothing here
+     is a clinical measurement, diagnosis or treatment. Always consult a qualified
+     speech-language pathologist for advice about speech and language.</p>
+  <p class="footer-meta">All personal data stays in this browser (localStorage) unless you
+     explicitly send it for AI processing. Audio and transcripts may be shared with
+     Google Gemini when you use recording or conversation features.</p>
+</footer>
+
+<!-- ======================= CONSENT MODAL ======================= -->
+<div class="modal-backdrop" id="consent-modal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="consent-title">
+    <div class="modal-head">
+      <h2 id="consent-title">Before you record anything</h2>
+    </div>
+    <div class="modal-body">
+      <p>Dr. Sturgis is a <strong>student prototype</strong> — not a medical device and
+         not a substitute for professional care.</p>
+      <ul class="consent-list">
+        <li>🎙️ If you use voice features, your <strong>audio and transcripts are sent to
+            Google Gemini</strong>, an external AI service, to get a reply or transcript.</li>
+        <li>🧠 AI output is for <strong>practice and reflection only</strong> — it is not a
+            diagnosis, not a clinical measurement, and not treatment advice.</li>
+        <li>🧒 For children, a <strong>caregiver should help set up and supervise</strong>.
+            We never ask for a child's name, age in years, or other identifying details —
+            only an age group.</li>
+        <li>🗑️ You can <strong>export or delete all your data</strong> at any time from the
+            Privacy section.</li>
+      </ul>
+      <p class="muted">You can browse without recording. Recording and live conversation
+        stay disabled until you agree.</p>
+      <div class="btn-row">
+        <button type="button" class="btn btn-primary" id="consent-agree">I understand and agree</button>
+        <button type="button" class="btn" id="consent-decline">Not now — browse without recording</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= GENERIC MODAL ======================= -->
+<div class="modal-backdrop" id="app-modal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="app-modal-title">
+    <div class="modal-head">
+      <h2 id="app-modal-title"></h2>
+      <button type="button" class="icon-btn" id="app-modal-close" aria-label="Close dialog">✕</button>
+    </div>
+    <div class="modal-body" id="app-modal-body"></div>
+  </div>
+</div>
+
+<div id="toast" role="status" aria-live="polite" hidden></div>
+<div id="sr-status" class="visually-hidden" aria-live="assertive"></div>
+
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>
